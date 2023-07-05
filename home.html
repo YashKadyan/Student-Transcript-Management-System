@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Welcome to STMS</title>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="style.css" />
+	<script>
+		function openLoginForm(name) {
+			document.getElementById("entity").innerHTML = name.concat(" Login");
+			document.getElementById("Login").value = name;
+			document.body.classList.add("showLoginForm");
+		}
+		function closeLoginForm() {
+			document.body.classList.remove("showLoginForm");
+		}
+
+		(function () {  
+            'use strict';  
+            window.addEventListener('load', function () {  
+                var form = document.getElementById('needs-validation');
+
+                form.addEventListener('submit', function (event){  
+                    if (form.checkValidity() === false) 
+                    {  
+                        event.preventDefault();  
+                        event.stopPropagation();  
+                    }  
+                    form.classList.add('was-validated');  
+                }, false);  
+            }, false);
+        })();
+		var getUrlParameter = function getUrlParameter(sParam) {
+			var sPageURL = window.location.search.substring(1),
+				sURLVariables = sPageURL.split('&'),
+				sParameterName,
+				i;
+				for (i = 0; i < sURLVariables.length; i++) {
+					sParameterName = sURLVariables[i].split('=');
+				if (sParameterName[0] === sParam) {
+					//alert(sParameterName[0] === sParam);
+					return typeof sParameterName[1] === undefined ? true : decodeURIComponent(sParameterName[1]);
+				}
+			}
+			return false;
+		};
+		
+		window.onload = function(){
+			if (getUrlParameter('sent')==="success")
+			{
+				alert("Your Response has been sent successfully!");
+			}
+			else if(getUrlParameter('login')==="fail")
+			{
+				alert("Username or password is incorrect!");
+			}
+			// Get the container element
+			var btnContainer = document.getElementById("myDIV");
+			// Get all buttons with class="btn" inside the container
+			var btns = btnContainer.getElementsByClassName("my_link");
+			// Loop through the buttons and add the active class to the current/clicked button
+			for (var i = 0; i < btns.length; i++) {
+				btns[i].addEventListener("click", function() {
+					var current = document.getElementsByClassName("active");
+					current[0].className = current[0].className.replace(" active", "");
+					this.className += " active";
+				});
+			} 
+		};
+	</script>
+	<style>
+		.card-img-top {
+			width: 100%;
+			height: 20vw;
+			object-fit: cover;
+		}
+		.card :hover {
+			box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+		}
+		.send {
+			background-color: #21d190;
+			width: 8em;
+			transition: all 1s ease-in-out;
+		}
+		.send:hover {
+			background: #00b712;
+			color:#f6ead4;
+  			background-image: linear-gradient(315deg, #21d190 0%, #d65bca 74%);
+			width: 25em
+		}
+		.invalid-tooltip {
+			position: inherit;	
+		}
+		a{
+			cursor: pointer;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="flex-container">
+		<div class="topnav">
+			<label class="logo">Online Student Result Portal</label>
+			<div class="topnav-right" id="myDIV">
+				<a class="my_link active" href="#home">Home</a>
+				<a class="my_link" onclick="openLoginForm('Faculty')">Faculty Login</a>
+				<a class="my_link" onclick="openLoginForm('Student')">Student Login</a>
+				<a class="my_link" href="#aboutus">About Us</a>
+				<a class="my_link" data-toggle="modal" data-target="#modalContactForm">Contact Us</a>
+			</div>
+		</div>
+	</div>
+	<img class="img-fluid" id="home" src="res/result.jpg" />
+	<hr><br><br>
+	<div class="container-fluid">	
+	<div class="card-deck">
+		<div class="card" style="margin-left: 2%;">
+			<!-- <div class="card" > -->
+			<img src="res/results.jpg" class="card-img-top" alt="...">
+			<div class="card-body">
+				<h5 class="card-title">System generated reports</h5>
+				<p class="card-text">STMS generates the reports for you. 
+					It takes care of all the intricate calculations and you don't have to worry about anything ever.</p>
+			</div>
+		</div>
+		<div class="card">
+			<img src="res/interaction.jpeg" class="card-img-top" alt="...">
+			<div class="card-body">
+				<h5 class="card-title">Hassel-Free</h5>
+				<p class="card-text">The UI is extremely user friendly. The attractive design makes user want to visit the website again and again.
+					You do not have to struggle to find the feature.
+				</p>
+			</div>
+		</div>
+		<div class="card" style="margin-right: 2%;">
+		<!-- <div class="card" > -->
+			<img src="res/searchresults.jpg" class="card-img-top" alt="...">
+			<div class="card-body">
+				<h5 class="card-title">Searching made easy</h5>
+				<p class="card-text">The class report is just a click away. If required, a faculty can view the report card of the student of his own department.
+					Faculty do not have to worry about keeping the hard copy of the marks records. 
+				</p>	
+			</div>
+		</div>
+	</div>
+
+</div>
+	<br><br>
+	<div class="container" style="text-align: justify;">
+		<strong><span style="color: black; font-size: 2vw; text-align: center;">About Student Transcript Management
+				System</strong><br>
+		<span style="color: #808080; font-size: 22px;">The Student Transcript Management System <b>(STMS)</b> enables
+			organization to analyze, edit and publish assessment result in a formed and secure way. Manage assessment
+			result in a professional and secure way to convert them into the meaningful data of the organization (e.g.
+			grades, certificates and othermeasure of achievements). In the existing system,most of the records are
+			maintained on paper. It becomes very inconvenient to modify the data. In the existing system, there is a
+			possibility that the same data in different registers may have different values which means that the entries
+			of the same data do not match. This inconsistent state does not supply the concrete information which poses
+			a problem in the case of information related to a particular seach record. Our project is very useful. User
+			is no longer required to check his register in search of records, as now it can be searched over the
+			software by choosing some options. The user need not type in most of the information. He/She is just
+			required to enter in the desired options. On the whole it liberates the user from keeping lengthy manual
+			records. In a nutshell, it abates the work load of an organization. In today's world, no one likes to
+			perform calculations on calculator or manually when computer is there. Everyone wants his/her work to be
+			done by computer automatically and displaying the results for further manipulations.</center>
+	</div>
+
+	<br><br>
+	<!-- Footer -->
+	<footer class="bg-light text-center text-lg-start" id="aboutus">
+		<div class="container p-3">
+			<div class="row">
+				<div class="col-lg-6 col-md-12 mb-4 mb-md-0">
+					<h5 class="text-uppercase" style="text-align: left;">Developed By:</h5>
+					<p>
+					<ol style="text-align: left;">
+						<li>Anand Balkrishna Doijode</li>
+						<li>Yash Sanjay Kadyan</li>
+						<li>Pratik Vitthal Sonsale</li>
+					</ol>
+					</p>
+				</div>
+				<hr class="clearfix w-100 d-md-none pb-3">
+				<div class="col-lg-6 col-md-12 mb-4 mb-md-0">
+					<h5 class="text-uppercase" style="text-align: left;">Project Guide</h5>
+					<p style="text-align: left;">Prof. Irfan Khatik</p>
+					<p>This Web App is developed as a course work for MSc(Comp.Sci.)SEM-I in Fergusson College, Pune 04.
+					</p>
+				</div>
+			</div>
+		</div>
+
+		<div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+			© 2021 Copyright, All Rights Reserved <br>
+			<a class="text-dark" href="http://localhost/STMS/home.html">STMS.com</a>
+		</div>
+	</footer>
+	<!-- Footer -->
+
+	<!--Login form of faculty and student-->
+	<form action="login_validate.php" method="POST" style="font-family:'Raleway';">
+		<div class="popup-overlay"></div>
+		<div class="popup">
+			<div class="popup-close" onclick="closeLoginForm()">&times;</div>
+			<div class="form">
+				<div class="avatar">
+					<img src="res/login_avatar.png" alt="">
+				</div>
+				<div class="header" id="entity">
+					Login
+				</div>
+				<div class="element">
+					<label for="username">Username</label>
+					<input type="text" id="username" name="username" required>
+				</div>
+				<div class="element">
+					<label for="password">Password</label>
+					<input type="password" id="password" name="password" required>
+					<input type="text" id="Login" name="entity" value="" hidden />
+				</div>
+				<div class="element">
+					<button class="decorate" type="submit"
+						style="background-image: linear-gradient(315deg, #21d190 0%, #d65bca 74%);">Login</button>
+				</div>
+			</div>
+		</div>
+	</form>
+
+		
+
+	<form action="contact_form.php" method='GET' novalidate id="needs-validation">
+	<div class="modal fade" id="modalContactForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  	<div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Write to us</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <i class="fa fa-user prefix grey-text"></i>
+          <label data-error="wrong" data-success="right">Your name</label>
+          <input name="name" type="text" class="form-control" pattern="^[a-zA-Z ]{2,30}$" required>
+		  <div class="invalid-tooltip">Please enter the valid name.</div>
+        </div>
+
+        <div class="md-form mb-5">
+          <i class="fa fa-envelope prefix grey-text"></i>
+          <label data-error="wrong" data-success="right">Your email</label>
+          <input name="mail" type="email" class="form-control" required>
+		  <div class="invalid-tooltip">Please enter the valid email.</div>
+        </div>
+
+        <div class="md-form mb-5">
+          <i class="fa fa-tag prefix grey-text"></i>
+          <label data-error="wrong" data-success="right">Subject</label>
+          <input name="subject" type="text" class="form-control" maxlength="50" required>
+		  <div class="invalid-tooltip">Please enter the subject.</div>
+        </div>
+
+        <div class="md-form">
+          <i class="fa fa-pencil prefix grey-text"></i>
+          <label data-error="wrong" data-success="right">Your message</label>
+          <textarea name="msg" type="text" class="md-textarea form-control" maxlength="500" rows="4" required></textarea>
+		  <div class="invalid-tooltip">Please enter your message.</div>
+        </div>
+      </div>
+      <div class="modal-footer d-flex justify-content-center">
+		  <button class="btn send btn-unique">Send <i class="fa fa-paper-plane-o ml-4"></i></button>    
+	</div>
+	<div id='contact_success' class="alert alert-success alert-dismissible sent" style="display:none;">
+		<button type="button" class="close" data-dismiss="alert">&times;</button>
+		<strong>Success!</strong> Your response has been sent!
+	</div>
+    </div>
+  </div>
+</div>
+</form>
+
+</body>
+</html>
