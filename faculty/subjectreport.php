@@ -1,6 +1,14 @@
 <?php
 session_start();
+<<<<<<< HEAD
 require_once('../Database/connection.php');
+=======
+$connection =  mysqli_connect('localhost','anand','Happy@123','STMS',3306);
+if (!$connection) 
+{
+    die("Connection failed: " . mysqli_connect_error());
+}
+>>>>>>> be24171 (README.md file committed!)
 
 if(!isset($_SESSION['uid']))
 {
@@ -223,7 +231,11 @@ $result1 = mysqli_query($connection,$sql);
         <ul class="navbar-nav dropdown ml-auto">
             <li class="nav-item">
               <a class="nav-link dropdown-toggle" href="#" id="navbardrop"  data-toggle="dropdown">
+<<<<<<< HEAD
               <img src="<?php echo$_SESSION['photo'];?>" width="30px" height="30px" style="border-radius:50%;"/>&nbsp;&nbsp;
+=======
+              <img src="/STMS/res/user<?php echo$_SESSION['uid'].".".$_SESSION['photo'];?>" width="30px" height="30px" style="border-radius:50%;"/>&nbsp;&nbsp;
+>>>>>>> be24171 (README.md file committed!)
               Welcome&nbsp;<?php echo$_SESSION['name'];?>&nbsp;!
               </a>
               <div class="dropdown-menu dropdown-menu-right">
@@ -368,8 +380,12 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" and isset($_GET['action']))
           echo"<td>".$student_data['roll_no']."</td>";
           echo"<td>".$student_data['u_name']."</td>";
           echo"<td>".$exam_result['score']."</td>";
+<<<<<<< HEAD
           $date = new DateTime($exam_result['uploaded_on']);
           echo"<td>".$date->format('m/d/Y h:ia')."</td>";
+=======
+          echo"<td>".$exam_result['uploaded_on']."</td>";
+>>>>>>> be24171 (README.md file committed!)
           echo"</tr>";
         }
         echo"</tbody></table>";

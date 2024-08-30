@@ -1,7 +1,15 @@
 <?php
 
+<<<<<<< HEAD
 require_once('../Database/connection.php');
 
+=======
+$connection =  mysqli_connect('localhost','anand','Happy@123','STMS',3306);
+if (!$connection) 
+{
+    die("Connection failed: " . mysqli_connect_error());
+}
+>>>>>>> be24171 (README.md file committed!)
 if(isset($_POST['cid']) and isset($_POST['sem']))
 {
     $cid = $_POST['cid'];

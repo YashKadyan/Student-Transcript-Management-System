@@ -1,6 +1,14 @@
 <?php
     session_start();
+<<<<<<< HEAD
     require_once('../Database/connection.php');
+=======
+    $connection =  mysqli_connect('localhost','anand','Happy@123','STMS',3306);
+    if (!$connection) 
+    {
+        die("Connection failed: " . mysqli_connect_error());
+    }
+>>>>>>> be24171 (README.md file committed!)
 
     if(!isset($_SESSION['uid']))
     {
@@ -11,13 +19,20 @@
         $data = trim($data);
         $data = stripslashes($data);
         $data = htmlspecialchars($data);
+<<<<<<< HEAD
+=======
+        //echo $data."<br>";
+>>>>>>> be24171 (README.md file committed!)
         return $data;
     }
     $cid = test_input($_GET["course"]);
     $sem = test_input($_GET["sem"]);
     $subject = test_input($_GET["subject"]);
     $exam = test_input($_GET["exam"]);
+<<<<<<< HEAD
     
+=======
+>>>>>>> be24171 (README.md file committed!)
     $sql = "SELECT u_name,PRN,roll_no FROM user,student WHERE user.user_id = student.user_id AND semester=$sem AND course_id=$cid ORDER BY roll_no ASC";
     $res = mysqli_query($connection,$sql);
     
@@ -58,7 +73,11 @@
     // Header starts ///
     $pdf->Cell(50);
     $pdf->Cell($width_cell[0],10,'Roll No',1,0,'C',true);
+<<<<<<< HEAD
     $pdf->Cell($width_cell[1],10,'Name',1,0,'C',true);
+=======
+    $pdf->Cell($width_cell[1],10,'NAME',1,0,'C',true);
+>>>>>>> be24171 (README.md file committed!)
     $pdf->Cell($width_cell[2],10,'Marks',1,1,'C',true);
     $pdf->SetFont('Times','',12);
     $pdf->SetFillColor(235,236,236); 

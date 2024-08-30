@@ -1,6 +1,14 @@
 <?php
 session_start();
+<<<<<<< HEAD
 require_once('../Database/connection.php');
+=======
+$connection =  mysqli_connect('localhost','anand','Happy@123','STMS',3306);
+if (!$connection) 
+{
+    die("Connection failed: " . mysqli_connect_error());
+}
+>>>>>>> be24171 (README.md file committed!)
 
 if(!isset($_SESSION['uid']))
 {
@@ -165,7 +173,11 @@ $result1 = mysqli_query($connection,$sql2);
         <ul class="navbar-nav dropdown ml-auto">
             <li class="nav-item">
               <a class="nav-link dropdown-toggle" href="#" id="navbardrop"  data-toggle="dropdown">
+<<<<<<< HEAD
               <img src="<?php echo$_SESSION['photo'];?>" width="30px" height="30px" style="border-radius:50%;"/>&nbsp;&nbsp;
+=======
+              <img src="/STMS/res/user<?php echo$_SESSION['uid'].".".$_SESSION['photo'];?>" width="30px" height="30px" style="border-radius:50%;"/>&nbsp;&nbsp;
+>>>>>>> be24171 (README.md file committed!)
               Welcome&nbsp;<?php echo$_SESSION['name'];?>&nbsp;!
               </a>
               <div class="dropdown-menu dropdown-menu-right">
@@ -194,12 +206,17 @@ $result1 = mysqli_query($connection,$sql2);
       </div>
 
 <?php
+<<<<<<< HEAD
+=======
+
+>>>>>>> be24171 (README.md file committed!)
 if ($_SERVER["REQUEST_METHOD"] == "GET" and isset($_GET['search_result']))
 {
   $student = test_input($_GET["student_id"]);
   //$exam = test_input($_GET["exam"]);
   
   /*To get the PRN from the roll_no*/
+<<<<<<< HEAD
   
   $sql = "SELECT DISTINCT user.u_name, student.PRN, student.semester,course.c_name,student.course_id FROM user,student,course WHERE user.user_id = student.user_id AND course.course_id=student.course_id AND student.roll_no=$student AND student.dept_id=".$row['dept_id']; 
   $result = mysqli_query($connection,$sql);
@@ -212,6 +229,31 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" and isset($_GET['search_result']))
     {?>
         <h3>Results</h3>
         <div class="table-responsive">
+=======
+  $result = mysqli_query($connection,"SELECT PRN from student where roll_no=$student");
+  $PRN_data = mysqli_fetch_row($result);
+
+  if(count($PRN_data)==1)
+  {  
+    $sql = "SELECT * from result WHERE PRN=$PRN_data[0]";
+    $result = mysqli_query($connection,$sql);
+    if($result)
+    {?>
+        
+        <?php
+        $sql = "SELECT DISTINCT user.u_name, student.semester,course.c_name FROM user,student,course WHERE user.user_id = student.user_id AND course.course_id=student.course_id AND student.PRN =".$PRN_data[0]." AND student.dept_id=".$row['dept_id']; 
+        $result = mysqli_query($connection,$sql);
+        if(mysqli_num_rows($result)==0)
+        {?>
+            <div class="alert alert-warning alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>Warning!</strong>&nbsp;&nbsp;Unknown student!
+            </div>
+        <?php die();}
+        $student_data = mysqli_fetch_assoc($result);
+        ?>
+        <h3>Results</h3>
+>>>>>>> be24171 (README.md file committed!)
         <table class="table table-hover table-bordered"style="text-align:center;">
         <tr>
           <thead>
@@ -236,12 +278,21 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" and isset($_GET['search_result']))
         <!-- Fine till here-->
 
         <?php
+<<<<<<< HEAD
         $sql1 = "select * from subject where semester=".$student_data['semester']." and course_id=".$student_data['course_id'];
+=======
+
+        $sql1 = "select * from subject where semester=1 and course_id=1";
+>>>>>>> be24171 (README.md file committed!)
         $result = mysqli_query($connection,$sql1);
 
         while($subject_row = mysqli_fetch_assoc($result))
         {
+<<<<<<< HEAD
             $sql = "SELECT score FROM result,exam WHERE PRN=".$student_data['PRN']." and sub_id=".$subject_row['sub_id']." AND result.exam_id=exam.exam_id AND exam_name='CE_I'";
+=======
+            $sql = "select result.exam_id,score from result,exam where PRN=".$PRN_data[0]." and sub_id=".$subject_row['sub_id']." AND result.exam_id=exam.exam_id AND exam_name='CE_I'";
+>>>>>>> be24171 (README.md file committed!)
             $result1 = mysqli_query($connection,$sql);
             $row = mysqli_fetch_assoc($result1);
             echo"<tr>";
@@ -249,20 +300,33 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" and isset($_GET['search_result']))
             echo"<td>".$subject_row['sub_name']."</td>";
             echo"<td>".$row['score']."</td>";
             
+<<<<<<< HEAD
             $sql = "SELECT result.score FROM result,exam WHERE PRN=".$student_data['PRN']." and sub_id=".$subject_row['sub_id']." AND result.exam_id=exam.exam_id AND exam_name='CE_II'";
+=======
+            $sql = "select result.exam_id,score from result,exam where PRN=".$PRN_data[0]." and sub_id=".$subject_row['sub_id']." AND result.exam_id=exam.exam_id AND exam_name='CE_II'";
+>>>>>>> be24171 (README.md file committed!)
             $result1 = mysqli_query($connection,$sql);
             $row = mysqli_fetch_assoc($result1);
             echo"<td>".$row['score']."</td>";
 
+<<<<<<< HEAD
             $sql = "SELECT result.exam_id,score FROM result,exam WHERE PRN=".$student_data['PRN']." and sub_id=".$subject_row['sub_id']." AND result.exam_id=exam.exam_id AND exam_name='ESE'";
+=======
+            $sql = "select result.exam_id,score from result,exam where PRN=".$PRN_data[0]." and sub_id=".$subject_row['sub_id']." AND result.exam_id=exam.exam_id AND exam_name='ESE'";
+>>>>>>> be24171 (README.md file committed!)
             $result1 = mysqli_query($connection,$sql);
             $row = mysqli_fetch_assoc($result1);
             echo"<td>".$row['score']."</td>";
             echo"</tr>";
         }
+<<<<<<< HEAD
       echo"</div>";
     }
   } 
+=======
+    }
+  }
+>>>>>>> be24171 (README.md file committed!)
   else
   {?>
     <div class="alert alert-warning alert-dismissible">

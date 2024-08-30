@@ -1,7 +1,15 @@
 <?php
 session_start();
+<<<<<<< HEAD
 require_once('../Database/connection.php');
 
+=======
+$connection =  mysqli_connect('localhost','anand','Happy@123','STMS',3306);
+if (!$connection) 
+{
+    die("Connection failed: " . mysqli_connect_error());
+}
+>>>>>>> be24171 (README.md file committed!)
 
 if(!isset($_SESSION['uid']))
 {
@@ -22,7 +30,11 @@ $result1 = mysqli_query($connection,$sql2);
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<<<<<<< HEAD
     <title>Update marks</title>
+=======
+    <title>Add marks</title>
+>>>>>>> be24171 (README.md file committed!)
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
@@ -215,15 +227,24 @@ $result1 = mysqli_query($connection,$sql2);
             </a>
             <div class="dropdown-menu">
               <span class="decorate"><a class="dropdown-item" href="subjectreport.php">Subject Reports</a></span>
+<<<<<<< HEAD
               <span class="decorate"><a class="dropdown-item" href="searchresult.php">Search Result</a></span>
               <span class="decorate"><a class="dropdown-item" href="studentreport.php">Student Reports</a></span>
+=======
+              <span class="decorate"><a class="dropdown-item" href="searchresult.php?">Search Result</a></span>
+              <span class="decorate"><a class="dropdown-item" href="#">Student Reports</a></span>
+>>>>>>> be24171 (README.md file committed!)
             </div>
           </li>
         </ul>
         <ul class="navbar-nav dropdown ml-auto">
             <li class="nav-item">
               <a class="nav-link dropdown-toggle" href="#" id="navbardrop"  data-toggle="dropdown">
+<<<<<<< HEAD
               <img src="<?php echo$_SESSION['photo'];?>" width="30px" height="30px" style="border-radius:50%;"/>&nbsp;&nbsp;
+=======
+              <img src="/STMS/res/user<?php echo$_SESSION['uid'].".".$_SESSION['photo'];?>" width="30px" height="30px" style="border-radius:50%;"/>&nbsp;&nbsp;
+>>>>>>> be24171 (README.md file committed!)
               Welcome&nbsp;<?php echo$_SESSION['name'];?>&nbsp;!
               </a>
               <div class="dropdown-menu dropdown-menu-right">

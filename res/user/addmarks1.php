@@ -1,23 +1,22 @@
 <?php
 session_start();
-<<<<<<< HEAD
-require_once('../Database/connection.php');
-=======
 $connection =  mysqli_connect('localhost','anand','Happy@123','STMS',3306);
 if (!$connection) 
 {
     die("Connection failed: " . mysqli_connect_error());
 }
->>>>>>> be24171 (README.md file committed!)
 
 if(!isset($_SESSION['uid']))
 {
   echo"<script>alert('Unauthorised access!!!');</script>";
   die();
 }
-$sql = "select department.dept_name,course.course_id,course.c_name,course.c_duration from course,department,faculty where department.dept_id = faculty.dept_id and course.dept_id = department.dept_id and faculty.user_id = ".$_SESSION['uid'];
+$sql = "select department.dept_name,course.course_id,course.c_name,faculty.faculty_id from course,department,faculty where department.dept_id = faculty.dept_id and course.dept_id = department.dept_id and faculty.user_id = ".$_SESSION['uid'];
 $result = mysqli_query($connection,$sql);
 $row = mysqli_fetch_assoc($result);
+
+$sql2 = "SELECT exam_id, exam_name,descr,total_marks FROM exam";  
+$result1 = mysqli_query($connection,$sql2);
 ?>
 
 <!DOCTYPE html>
@@ -26,7 +25,7 @@ $row = mysqli_fetch_assoc($result);
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>New Subject</title>
+    <title>STMS-Add marks</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
@@ -63,41 +62,19 @@ $row = mysqli_fetch_assoc($result);
           border: none;
           padding: 10px;
           margin-top: 6%;
-          background-color: #f6ead4 ;
+          //background-color: #f6ead4 ;
+          background-color: whitesmoke ;
           border-radius: 10px;
           z-index: 1;
         }
         button.btn-primary {
           background-image: linear-gradient(315deg, #21d190 0%, #d65bca 74%);
           color: whitesmoke;
-          width: 7em;
+          width: 25.2 em;
           border: none;
-          padding: 15px 32px;
-          text-align: center;
-          text-decoration: none;
-          display: inline-block;
-          font-size:16px;
-          margin:4px 2px;
-          cursor:pointer;
-          transition: all 1s;
-          transition-duration: 0.7s;
-          transition-timing-function: ease-in-out;
         }
-        button.btn-primary:hover {
-          width: 20.5em;
-          box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
-        }
-        h3 {
-            font-size: 32px;
-            /* background: -webkit-linear-gradient(#eee, #333); */
-            background: -webkit-linear-gradient(#21d190, #d65bca);
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-align: center;
-        } 
-</style>
-<script>
+  </style>
+<script>  
       (function () {  
             'use strict';  
             window.addEventListener('load', function () {  
@@ -125,6 +102,51 @@ $row = mysqli_fetch_assoc($result);
               alert("\nStatus: " + data);
             } */ );
           });
+
+          $(".sem").change(function(){
+            //alert("course: " + $(".course").val());
+            $(".subject").load("demo_test_post.php",
+            {
+              cid: $(".course").val(),
+              fid: <?php echo$row['faculty_id']?>,
+              sem: $(".sem").val()
+            } /* ,
+            function(data,status){
+              alert("Data: " + data);
+            }  */);
+
+            $(".subject").html("<option value=''>Select Subject</option>"); 
+            if ($(".course").val()==='' || $(".sem").val()=='') {
+              //alert('nothing!');
+              $(".student").html("<option value=''>No students</option>"); 
+            }
+            else {
+              $('.student').load("demo_test_post.php",
+              {
+                cid: $(".course").val(),
+                sem: $(".sem").val()
+              } /* ,
+              function(data,status) {
+                alert(status);
+              }  */);
+            }
+          });
+
+
+          $(".exam").change(function(){
+            //alert("course: " + $(".course").val());
+            $('.obtained_marks').val('');
+            $("#total_marks").load("demo_test_post.php",
+            {
+              eid: $(".exam").val()
+            } ,
+            function(data,status){
+              //alert("\nStatus: " + status);
+              $("#total_marks").val(data);
+              marks = data.split(' ');
+              $('.obtained_marks').attr('max',marks[0]);
+            } );
+          });
         });
   </script>
 </head> 
@@ -146,11 +168,8 @@ $row = mysqli_fetch_assoc($result);
             Administration
             </a>
             <div class="dropdown-menu">
-              <span class="decorate"><a class="dropdown-item" href="addsubject.php">Add Subject</a></span>
-              <span class="decorate"><a class="dropdown-item" href="addmarks.php?exam=CE_I">Add CE-I Marks</a></span>
-              <span class="decorate"><a class="dropdown-item" href="addmarks.php?exam=CE_II">Add CE-II Marks</a></span>
-              <span class="decorate"><a class="dropdown-item" href="addmarks.php?exam=ESE">Add ESE Marks</a></span>
-              <span class="decorate"><a class="dropdown-item" href="updatemarks.php">Update Marks</a></span>
+                <span class="decorate"><a class="dropdown-item" href="addsubject.php">Add Subject</a></span>
+                <span class="decorate"><a class="dropdown-item" href="addmarks.php">Add Marks</a></span>
             </div>
           </li>
           <li class="nav-item dropdown">
@@ -158,20 +177,16 @@ $row = mysqli_fetch_assoc($result);
             Report
             </a>
             <div class="dropdown-menu">
-              <span class="decorate"><a class="dropdown-item" href="subjectreport.php">Subject Reports</a></span>
-              <span class="decorate"><a class="dropdown-item" href="searchresult.php">Search Result</a></span>
-              <span class="decorate"><a class="dropdown-item" href="studentreport.php">Student Reports</a></span>
+              <span class="decorate"><a class="dropdown-item" href="#">Subject Reports</a></span>
+              <span class="decorate"><a class="dropdown-item" href="#">Search Result</a></span>
+              <span class="decorate"><a class="dropdown-item" href="#">Student Reports</a></span>
             </div>
           </li>
         </ul>
         <ul class="navbar-nav dropdown ml-auto">
             <li class="nav-item">
               <a class="nav-link dropdown-toggle" href="#" id="navbardrop"  data-toggle="dropdown">
-<<<<<<< HEAD
-              <img src="<?php echo$_SESSION['photo'];?>" width="30px" height="30px" style="border-radius:50%;"/>&nbsp;&nbsp;
-=======
-              <img src="/STMS/res/user<?php echo$_SESSION['uid'].".".$_SESSION['photo'];?>" width="30px" height="30px" style="border-radius:50%;"/>&nbsp;&nbsp;
->>>>>>> be24171 (README.md file committed!)
+              <img src="/STMS/res/user<?php echo$_SESSION['uid'];?>.jpg" width="30px" height="30px" style="border-radius:50%;"/>&nbsp;&nbsp;
               Welcome&nbsp;<?php echo$_SESSION['name'];?>&nbsp;!
               </a>
               <div class="dropdown-menu dropdown-menu-right">
@@ -183,109 +198,83 @@ $row = mysqli_fetch_assoc($result);
     </nav>
    
       <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="GET" class="center" novalidate id="needs-validation">
-      <h3>Add a New Subject</h3>
-      <div class="form-group row">
-        <label for="name" class="col-sm-2 col-form-label">Department</label>
-        <div class="col-sm-5">
-          <input type="text" class="form-control" id="sname" name="sname" value="<?php echo$row['dept_name']?>" disabled>
+        <div class="table-responsive">  
+          <table class="table table-hover table-bordered">
+          <thread class="thread-dark"></thread>
+          <tr>
+            <th scope="col">Roll No</th>
+            <th scope="col">Name</th>
+            <th scope="col">CE-I  10 Marks</th>
+            <th scope="col">CE-I 15 Marks</th>
+            <th scope="col">CE-II 25 Marks</th>
+            <th scope="col">ESE 50 Marks</th>
+            <!-- <th scope="col">Total</th> -->
+          </tr>
+          </table>
         </div>
-      </div>
 
-      <div class="form-group row ">
-        <label for="Course" class="col-sm-2 col-form-label">Course</label>
-        <div class="col-sm-5">
-            <select class="custom-select course" name="course" required>
-              <option value="">Select Course</option>
-              <?php 
-                do
-                {?>
-                  <option value="<?php echo$row['course_id'] ?>"><?php echo$row['c_name'] ?></option>
-                <?php 
-                }while($row = mysqli_fetch_assoc($result));?>
-            </select>
-            <div class="invalid-tooltip">Please select the Course.</div>
-        </div>
-      </div>
+
       
-      <div class="form-group row ">
-        <label for="Semester" class="col-sm-2 col-form-label">Semester</label>
-        <div class="col-sm-5">
-            <select class="custom-select sem" name="sem" required>
-              <option value="">Select Semester</option>
-            </select>
-            <div class="invalid-tooltip">Please select the Semester.</div>
-        </div>
-      </div>
 
-      <div class="form-group row">
-        <label for="name" class="col-sm-2 col-form-label">Subject</label>
-        <div class="col-sm-5">
-          <input type="text" class="form-control" id="sname" name="sname" pattern="^[a-zA-Z -]{2,50}$" placeholder="Subject Name" required>
-          <div class="invalid-tooltip">Please enter the Subject.</div>
-        </div>
-      </div>
-
-      <div class="form-group row ">
-        <label for="Credits" class="col-sm-2 col-form-label">Credits</label>
-        <div class="col-sm-5">
-        <input type="number" name='credits' class="form-control credits" min=0 max=10 placeholder="Credits for subject" required>
-        <div class="invalid-tooltip">Please enter the credits .</div>
-        </div>
-      </div>
-
-      <div class="form-group row">
+      
+      <!-- <div class="form-group row">
       <label for="add_subject" class="col-sm-2 col-form-label" ></label>
         <div class="col-sm-3">
-          <button type="submit" name="add" class="btn btn-primary" value="add" >Add</button>
+          <button type="submit" name="add" class="btn btn-primary" value="add" >Upload marks</button>
         </div>
-      </div>
-<?php
+      </div> -->
 
+<?php
+/* 
 if ($_SERVER["REQUEST_METHOD"] == "GET" and isset($_GET['add']) )
 {
-  $sname = test_input($_GET["sname"]);
   $cid = test_input($_GET["course"]);
-  $sem =  test_input($_GET['sem']);
-  $credits = test_input($_GET['credits']);
+  $sem = test_input($_GET["sem"]);
+  $subject = test_input($_GET["subject"]);
+  $student = test_input($_GET["student"]);
+  $exam = test_input($_GET["exam"]);
+  $score = test_input($_GET["score"]);
 
-  $sql = "SELECT COUNT(sub_name) from subject where sub_name='".$sname."' and course_id=$cid";
+  $sql = "SELECT COUNT(r_id) from result where sub_id=$subject and s_id=$student and exam_id=$exam";
   $result = mysqli_query($connection,$sql);
-  $row = mysqli_fetch_row($result);
+  $count = mysqli_fetch_row($result);
 
-  if ($row[0]==0) {
-    $get_fid_query = "SELECT faculty_id from faculty where user_id=".$_SESSION['uid'];
-    $result = mysqli_query($connection,$get_fid_query);
-    $row = mysqli_fetch_assoc($result);
-  
-    $sql = "INSERT INTO subject(sub_name, course_id, f_id,semester,credits) VALUES('".$sname."',$cid,".$row['faculty_id'].",".$sem.",$credits)";
+  if ($count[0]==0)
+  {
+    // $get_fid_query = "SELECT faculty_id from faculty where user_id=".$_SESSION['uid'];
+    // $result = mysqli_query($connection,$get_fid_query);
+    // $row = mysqli_fetch_assoc($result);
+    $date = date('Y-m-d H:i:s');
+
+    $sql = "INSERT INTO result(s_id, sub_id, exam_id, score, uploaded_on) VALUES($student, $subject, $exam, $score,'".$date."')";
     if (mysqli_query($connection, $sql)) {?>
 
       <div class="alert alert-success alert-dismissible">
         <button type="button" class="close" data-dismiss="alert">&times;</button>
-        <strong>Success!</strong> Subject added successfyully.
+        <strong>Success!</strong> Marks uploaded successfyully.
         <?php header("refresh:0");?>
       </div>
     
       <?php } else {?>
         <div class="alert alert-danger alert-dismissible">
           <button type="button" class="close" data-dismiss="alert">&times;</button>
-          <strong>Error!</strong> Subject could not be added!<?php echo mysqli_error($connection);?>
+          <strong>Error!</strong> Marks could not be uploaded!<?php echo mysqli_error($connection);?>
         </div>
     <?php }
-
   } else {?>
     <div class="alert alert-warning alert-dismissible">
       <button type="button" class="close" data-dismiss="alert">&times;</button>
-      <strong>Error!</strong> Subject already exists! 
+      <strong>Error!</strong> Record already exists! 
     </div>
-<?php }   
+<?php } 
 }
 function test_input($data) {
   $data = trim($data);
   $data = stripslashes($data);
   $data = htmlspecialchars($data);
+  //echo $data."<br>";
   return $data;
-}
+} */
 mysqli_close($connection);
 ?>
     </form> 

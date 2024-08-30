@@ -14,7 +14,16 @@
  The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.  -->
 <?php
     session_start();
+<<<<<<< HEAD
     require_once('../../Database/connection.php');
+=======
+    $connection =  mysqli_connect('localhost','anand','Happy@123','STMS',3306);
+    session_start();
+    if (!$connection) 
+    {
+        die("Connection failed: " . mysqli_connect_error());
+    }
+>>>>>>> be24171 (README.md file committed!)
     if(!isset($_SESSION['uid']))
     {
     echo"<script>alert('Unauthorised access!!!');</script>";
@@ -70,12 +79,43 @@
                     </a>
                 </li>
                 <li class="nav-item active">
+<<<<<<< HEAD
                     <a class="nav-link" href="result.php">
+=======
+                    <a class="nav-link" href="./result.php">
+>>>>>>> be24171 (README.md file committed!)
                         <i class="nc-icon nc-paper-2"></i>
                         <p>Result</p>
                     </a>
                 </li>
+<<<<<<< HEAD
 
+=======
+                    <!--<li>
+                        <a class="nav-link" href="./icons.html">
+                            <i class="nc-icon nc-atom"></i>
+                            <p>Icons</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="./maps.html">
+                            <i class="nc-icon nc-pin-3"></i>
+                            <p>Maps</p>
+                        </a>
+                    </li>-->
+                    <li>
+                        <a class="nav-link" href="./notifications.html">
+                            <i class="nc-icon nc-bell-55"></i>
+                            <p>Notifications</p>
+                        </a>
+                    </li>
+                    <!--<li class="nav-item active active-pro">
+                        <a class="nav-link active" href="upgrade.html">
+                            <i class="nc-icon nc-alien-33"></i>
+                            <p>Upgrade to PRO</p>
+                        </a>
+                    </li>-->
+>>>>>>> be24171 (README.md file committed!)
                 </ul>
             </div>
         </div>
@@ -97,7 +137,24 @@
                                     <span class="d-lg-none">Dashboard</span>
                                 </a>
                             </li>
+<<<<<<< HEAD
 
+=======
+                            <li class="dropdown nav-item">
+                                <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
+                                    <i class="nc-icon nc-planet"></i>
+                                    <span class="notification">5</span>
+                                    <span class="d-lg-none">Notification</span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <a class="dropdown-item" href="#">Notification 1</a>
+                                    <a class="dropdown-item" href="#">Notification 2</a>
+                                    <a class="dropdown-item" href="#">Notification 3</a>
+                                    <a class="dropdown-item" href="#">Notification 4</a>
+                                    <a class="dropdown-item" href="#">Another notification</a>
+                                </ul>
+                            </li>
+>>>>>>> be24171 (README.md file committed!)
                             <li class="nav-item">
                                 <a href="#" class="nav-link">
                                     <i class="nc-icon nc-zoom-split"></i>
@@ -111,6 +168,22 @@
                                     <span class="no-icon">Account</span>
                                 </a>
                             </li>
+<<<<<<< HEAD
+=======
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <span class="no-icon">Dropdown</span>
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                    <a class="dropdown-item" href="#">Action</a>
+                                    <a class="dropdown-item" href="#">Another action</a>
+                                    <a class="dropdown-item" href="#">Something</a>
+                                    <a class="dropdown-item" href="#">Something else here</a>
+                                    <div class="divider"></div>
+                                    <a class="dropdown-item" href="#">Separated link</a>
+                                </div>
+                            </li>
+>>>>>>> be24171 (README.md file committed!)
                             <li class="nav-item">
                                 <a class="nav-link" href="./logout.php">
                                     <span class="no-icon">Log out</span>
@@ -141,7 +214,11 @@
                                         </thead>
                                         <tbody>
                                             <?php 
+<<<<<<< HEAD
                                                 $sql = "SELECT * FROM subject WHERE semester=".$_SESSION['semester']." AND course_id=".$_SESSION['cid'];
+=======
+                                                $sql = "select * from subject where semester=".$_SESSION['semester']." and course_id=".$_SESSION['cid'];
+>>>>>>> be24171 (README.md file committed!)
                                                 $result = mysqli_query($connection,$sql);
                                         
                                                 while($subject_row = mysqli_fetch_assoc($result))
@@ -191,9 +268,12 @@
                         </div>
                     </div>
                 </div>
+<<<<<<< HEAD
         <div class="text-center">
             <a class="btn btn-info btn-fill" href="generateresult.php" target="_blank">Download Result</a>
         </div>
+=======
+>>>>>>> be24171 (README.md file committed!)
             </div>
         </div>
             <footer class="footer">

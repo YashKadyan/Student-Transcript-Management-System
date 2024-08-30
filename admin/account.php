@@ -1,14 +1,6 @@
 <?php
 if(isset($_POST['update']) and $_FILES['filepath']["error"]==0)
 {
-<<<<<<< HEAD
-  unset($_POST['update']);
-  header("refresh:5");
-}
-session_start();
-require_once('../Database/connection.php');
-
-=======
   header("refresh:3");
 }
 session_start();
@@ -20,7 +12,6 @@ if (!$connection)
 //print_r($_SESSION);
 //$uname = $_SESSION['username'];
 //$uid = $_SESSION['uid'];
->>>>>>> be24171 (README.md file committed!)
 if(!isset($_SESSION['uid']))
 {
   echo"<script>alert('Unauthorised access!!!');</script>";
@@ -160,10 +151,10 @@ $phone_no = $row['phone_no'];
         <!-- Links -->
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link" href="faculty.php">Home</a>
+            <a class="nav-link" href="adminhome.php">Home</a>
           </li>
           <!-- Dropdown -->
-          <li class="nav-item dropdown">
+          <!-- <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
             Administration
             </a>
@@ -184,16 +175,12 @@ $phone_no = $row['phone_no'];
               <span class="decorate"><a class="dropdown-item" href="searchresult.php?">Search Result</a></span>
               <span class="decorate"><a class="dropdown-item" href="studentreport.php">Student Reports</a></span>
             </div>
-          </li>
+          </li> -->
         </ul>
         <ul class="navbar-nav dropdown ml-auto">
             <li class="nav-item">
               <a class="nav-link dropdown-toggle" href="#" id="navbardrop"  data-toggle="dropdown">
-<<<<<<< HEAD
-              <img src="<?php echo$photo;?>" width="30px" height="30px" style="border-radius:50%;"/>&nbsp;&nbsp;
-=======
-              <img src="/STMS/res/user<?php echo$_SESSION['uid'].".".$photo;?>" width="30px" height="30px" style="border-radius:50%;"/>&nbsp;&nbsp;
->>>>>>> be24171 (README.md file committed!)
+              <img src="/STMS/<?php echo$photo;?>" width="30px" height="30px" style="border-radius:50%;"/>&nbsp;&nbsp;
               Welcome&nbsp;<?php echo$_SESSION['name'];?>&nbsp;!
               </a>
               <div class="dropdown-menu dropdown-menu-right">
@@ -209,11 +196,7 @@ $phone_no = $row['phone_no'];
       <div class="form-group row">
         <label for="profile_pic" class="col-sm-2 col-form-label">Profile <br>Photo</label>
         <div class="col-sm-5">
-<<<<<<< HEAD
-          <img src="<?php echo$photo;?>" width="100px" height="100px" style="border-radius:10%;"/><br><br>
-=======
-          <img src="/STMS/res/user<?php echo$_SESSION['uid'].".".$photo;?>" width="100px" height="100px" style="border-radius:10%;"/><br><br>
->>>>>>> be24171 (README.md file committed!)
+          <img src="/STMS/<?php echo$photo;?>" width="100px" height="100px" style="border-radius:10%;"/><br><br>
           <input type="file" class="form-control-file" id="file" onchange="Filevalidation()" name ="filepath" >
         </div>
          
@@ -230,11 +213,7 @@ $phone_no = $row['phone_no'];
       <div class="form-group row">
         <label for="mobile_no" class="col-sm-2 col-form-label">Mobile</label>
         <div class="col-sm-5">
-<<<<<<< HEAD
-          <input type="tel" pattern="^\d{10}$" class="form-control" required="" id="phonenumber" name="mobile_no" value="<?php echo $phone_no;?>"/>
-=======
           <input type="tel" pattern="^\d{10}$" class="form-control" id="phonenumber" name="mobile_no" value="<?php echo $phone_no;?>"/>
->>>>>>> be24171 (README.md file committed!)
           <div class="invalid-tooltip">Please enter the valid Phone number.</div>
         </div>
       </div>
@@ -315,11 +294,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $gender = test_input($_POST["gender"]);
   $username = test_input($_POST["username"]);
   $address = test_input($_POST["address"]);
-<<<<<<< HEAD
-  $sql = "UPDATE user SET u_name='".$name."', gender='".$gender."', dob='".$dob."', address='".$address."', email='".$email."', phone_no=".$mobile_no." WHERE user_id=".$_SESSION['uid'];
-=======
   $sql = "UPDATE user SET u_name='".$name."', gender='".$gender."', dob='".$dob."', address='".$address."', email='".$email."', phone_no=".$phone_no." WHERE user_id=".$_SESSION['uid'];
->>>>>>> be24171 (README.md file committed!)
   if (mysqli_query($connection, $sql)) {?>
     <div class="alert alert-success alert-dismissible">
       <button type="button" class="close" data-dismiss="alert">&times;</button>
@@ -342,18 +317,6 @@ function test_input($data) {
   $data = htmlspecialchars($data);
   return $data;
 }
-<<<<<<< HEAD
-$target_dir = "/var/www/domain1.com/public_html/STMS-complete/STMS/res/";
-$target_file = $target_dir . basename($_FILES["filepath"]["name"]);
-$uploadOk = 1;
-$imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
-// Check if image file is a actual image or fake image
-
-if(isset($_REQUEST["update"]) && $_FILES['filepath']["error"]==0) {
-  $check = getimagesize($_FILES["filepath"]["tmp_name"]);
-  if($check !== false) {
- //   echo "File is an image - " . $check["mime"] . ".";
-=======
 $target_dir = "/var/www/happy.com/html/STMS/res/";
 $target_file = $target_dir . basename($_FILES["filepath"]["name"]);
 $uploadOk = 1;
@@ -364,7 +327,6 @@ if(isset($_POST["update"]) && $_FILES['filepath']["error"]==0) {
   $check = getimagesize($_FILES["filepath"]["tmp_name"]);
   if($check !== false) {
     //echo "File is an image - " . $check["mime"] . ".";
->>>>>>> be24171 (README.md file committed!)
     $uploadOk = 1;
   } else {
       echo "File is not an image".$check['mime'];
@@ -396,26 +358,14 @@ if(isset($_POST["update"]) && $_FILES['filepath']["error"]==0) {
     echo "<br>Sorry, your file was not uploaded.";
   // if everything is ok, try to upload file
   } else {
-<<<<<<< HEAD
-    if(!unlink("/var/www/domain1.com/public_html".$_SESSION['photo'])) {
-      //echo"Previous Profile photo COUND NOT BE DELETED!!!";
-    }
-=======
 
->>>>>>> be24171 (README.md file committed!)
     if (move_uploaded_file($_FILES["filepath"]["tmp_name"], $target_dir."user".$_SESSION['uid'].'.'.$imageFileType)) {
       ?>
       <div class="alert alert-success alert-dismissible">
         <button type="button" class="close" data-dismiss="alert">&times;</button>
         <strong>Success!</strong> <?php echo "The file ". htmlspecialchars( basename( $_FILES["filepath"]["name"])). " has been uploaded.";
-<<<<<<< HEAD
-        $photo_path = "/STMS-complete/STMS/res/user".$_SESSION['uid'].".".$imageFileType;
-        mysqli_query($connection,"UPDATE user SET photo_path='/STMS/res/user".$_SESSION['uid'].".".$imageFileType."' WHERE user.user_id=".$_SESSION['uid']);
-        $_SESSION['photo'] = $photo_path; ?>
-=======
         mysqli_query($connection,"UPDATE user SET photo_path='".$imageFileType."' WHERE user.user_id=".$_SESSION['uid']);
         $_SESSION['photo'] = $imageFileType; ?>
->>>>>>> be24171 (README.md file committed!)
       </div>
       <?php
     } else {
@@ -429,8 +379,4 @@ mysqli_close($connection);
 ?>
     </form>
   </body>
-<<<<<<< HEAD
 </html>
-=======
-</html>
->>>>>>> be24171 (README.md file committed!)

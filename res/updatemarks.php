@@ -1,14 +1,10 @@
 <?php
 session_start();
-<<<<<<< HEAD
-require_once('../Database/connection.php');
-=======
 $connection =  mysqli_connect('localhost','anand','Happy@123','STMS',3306);
 if (!$connection) 
 {
     die("Connection failed: " . mysqli_connect_error());
 }
->>>>>>> be24171 (README.md file committed!)
 
 if(!isset($_SESSION['uid']))
 {
@@ -19,8 +15,8 @@ $sql = "select department.dept_name,course.course_id,course.c_name,faculty.facul
 $result = mysqli_query($connection,$sql);
 $row = mysqli_fetch_assoc($result);
 
-$sql = "SELECT exam_id, exam_name,descr,total_marks FROM exam where exam_id>2";  
-$result1 = mysqli_query($connection,$sql);
+$sql2 = "SELECT exam_id, exam_name,descr,total_marks FROM exam";  
+$result1 = mysqli_query($connection,$sql2);
 ?>
 
 <!DOCTYPE html>
@@ -29,7 +25,7 @@ $result1 = mysqli_query($connection,$sql);
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Subject Report</title>
+    <title>Add marks</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
@@ -57,12 +53,12 @@ $result1 = mysqli_query($connection,$sql);
           background-image: linear-gradient(315deg, #21d190 0%, #d65bca 74%);
           height: 100%;
           background-position: center;
-          /* background-repeat: no-repeat; */
+          background-repeat: no-repeat;
           background-size: cover;
         }
         .center {
           margin: auto;
-          width: 80%;
+          width: 60%;
           border: none;
           padding: 10px;
           margin-top: 6%;
@@ -73,51 +69,8 @@ $result1 = mysqli_query($connection,$sql);
         button.btn-primary {
           background-image: linear-gradient(315deg, #21d190 0%, #d65bca 74%);
           color: whitesmoke;
-          width: 7em;
+          width: 25.2 em;
           border: none;
-          transition: all 0.5s;
-          padding: 15px 32px;
-          text-align: center;
-          text-decoration: none;
-          display: inline-block;
-          font-size:16px;
-          margin:4px 2px;
-          cursor:pointer;
-          transition-duration: 0.4s;
-          transition: width 1s;
-          transition-timing-function: ease-in-out;
-
-        }
-        button.btn-primary:hover {
-          width: 16em;
-        }
-        h3 {
-            font-size: 32px;
-            /* background: -webkit-linear-gradient(#eee, #333); */
-            background: -webkit-linear-gradient(#21d190, #d65bca);
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-align: center;
-        }
-
-        table.table-bordered{
-            border:1px solid #d4b5f6;
-            margin-top:5%;
-        }
-        table.table-bordered > thead > tr > th{
-            border:1px solid #d4b5f6;
-        }
-        table.table-bordered > tbody > tr > td{
-          border:1px solid #d4b5f6;
-        }
-        table th, table td{
-        padding: 10px; /* Apply cell padding */
-        text-align:center;
-        }
-        img {
-        height: auto;
-        max-width: 100%;
         }
   </style>
 <script>  
@@ -148,6 +101,51 @@ $result1 = mysqli_query($connection,$sql);
               alert("\nStatus: " + data);
             } */ );
           });
+
+          $(".sem").change(function(){
+            //alert("course: " + $(".course").val());
+            $(".subject").load("demo_test_post.php",
+            {
+              cid: $(".course").val(),
+              fid: <?php echo$row['faculty_id']?>,
+              sem: $(".sem").val()
+            } /* ,
+            function(data,status){
+              alert("Data: " + data);
+            }  */);
+
+            $(".subject").html("<option value=''>Select Subject</option>"); 
+            if ($(".course").val()==='' || $(".sem").val()=='') {
+              //alert('nothing!');
+              $(".student").html("<option value=''>No students</option>"); 
+            }
+            else {
+              $('.student').load("demo_test_post.php",
+              {
+                cid: $(".course").val(),
+                sem: $(".sem").val()
+              } /* ,
+              function(data,status) {
+                alert(status);
+              }  */);
+            }
+          });
+
+
+          $(".exam").change(function(){
+            //alert("course: " + $(".course").val());
+            $('.obtained_marks').val('');
+            $("#total_marks").load("demo_test_post.php",
+            {
+              eid: $(".exam").val()
+            } ,
+            function(data,status){
+              //alert("\nStatus: " + status);
+              $("#total_marks").val(data);
+              marks = data.split(' ');
+              $('.obtained_marks').attr('max',marks[0]);
+            } );
+          });
         });
   </script>
 </head> 
@@ -169,16 +167,8 @@ $result1 = mysqli_query($connection,$sql);
             Administration
             </a>
             <div class="dropdown-menu">
-<<<<<<< HEAD
-              <span class="decorate"><a class="dropdown-item" href="addsubject.php">Add Subject</a></span>
-              <span class="decorate"><a class="dropdown-item" href="addmarks.php?exam=CE_I">Add CE-I Marks</a></span>
-              <span class="decorate"><a class="dropdown-item" href="addmarks.php?exam=CE_II">Add CE-II Marks</a></span>
-              <span class="decorate"><a class="dropdown-item" href="addmarks.php?exam=ESE">Add ESE Marks</a></span>
-              <span class="decorate"><a class="dropdown-item" href="updatemarks.php">Update Marks</a></span>
-=======
                 <span class="decorate"><a class="dropdown-item" href="addsubject.php">Add Subject</a></span>
                 <span class="decorate"><a class="dropdown-item" href="addmarks.php">Add Marks</a></span>
->>>>>>> be24171 (README.md file committed!)
             </div>
           </li>
           <li class="nav-item dropdown">
@@ -186,20 +176,16 @@ $result1 = mysqli_query($connection,$sql);
             Report
             </a>
             <div class="dropdown-menu">
-              <span class="decorate"><a class="dropdown-item" href="subjectreport.php">Subject Reports</a></span>
-              <span class="decorate"><a class="dropdown-item" href="searchresult.php">Search Result</a></span>
-              <span class="decorate"><a class="dropdown-item" href="studentreport.php">Student Reports</a></span>
+              <span class="decorate"><a class="dropdown-item" href="#">Subject Reports</a></span>
+              <span class="decorate"><a class="dropdown-item" href="#">Search Result</a></span>
+              <span class="decorate"><a class="dropdown-item" href="#">Student Reports</a></span>
             </div>
           </li>
         </ul>
         <ul class="navbar-nav dropdown ml-auto">
             <li class="nav-item">
               <a class="nav-link dropdown-toggle" href="#" id="navbardrop"  data-toggle="dropdown">
-<<<<<<< HEAD
-              <img src="<?php echo$_SESSION['photo'];?>" width="30px" height="30px" style="border-radius:50%;"/>&nbsp;&nbsp;
-=======
-              <img src="/STMS/res/user<?php echo$_SESSION['uid'].".".$_SESSION['photo'];?>" width="30px" height="30px" style="border-radius:50%;"/>&nbsp;&nbsp;
->>>>>>> be24171 (README.md file committed!)
+              <img src="/STMS/res/user<?php echo$_SESSION['uid'];?>.jpg" width="30px" height="30px" style="border-radius:50%;"/>&nbsp;&nbsp;
               Welcome&nbsp;<?php echo$_SESSION['name'];?>&nbsp;!
               </a>
               <div class="dropdown-menu dropdown-menu-right">
@@ -209,13 +195,12 @@ $result1 = mysqli_query($connection,$sql);
             </li>
         </ul>
     </nav>
-
+   
       <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="GET" class="center" novalidate id="needs-validation">
-      <h3>Student Report</h3>
       
       <div class="form-group row ">
         <label for="Course" class="col-sm-2 col-form-label">Course</label>
-        <div class="col-sm-3">
+        <div class="col-sm-6  ">
             <select class="custom-select course" name="course" required>
               <option value="">Select Course</option>
               <?php 
@@ -231,93 +216,117 @@ $result1 = mysqli_query($connection,$sql);
 
       <div class="form-group row ">
         <label for="Semester" class="col-sm-2 col-form-label">Semester</label>
-        <div class="col-sm-3">
+        <div class="col-sm-6">
             <select class="custom-select sem" name="sem" required>
               <option value="">Select Semester</option>
             </select>
-            <div class="invalid-tooltip">Please select the Semester.</div>
+            <!-- <div class="invalid-tooltip">Please select the Semester.</div> -->
         </div>
       </div>
 
       <div class="form-group row">
-      <label for="add_subject" class="col-sm-2 col-form-label" ></label>
-        <div class="col-sm-3">
-          <button type="submit" name="action" class="btn btn-primary" value="view" >Search</button>
+        <label for="name" class="col-sm-2 col-form-label">Subject</label>
+        <div class="col-sm-6">
+          <select class="custom-select subject" name="subject" required>
+            <option value="">Select Subject </option>
+          </select>
+            <div class="invalid-tooltip">Please select the Subject.</div>
         </div>
       </div>
+
+      <div class="form-group row">
+        <label for="name" class="col-sm-2 col-form-label">Student</label>
+        <div class="col-sm-6">
+            <select class="custom-select student" name="student" required>
+              <option value="">Select Student</option>
+            </select>
+          </div>
+          <div class="invalid-tooltip">Please select the Student.</div>
+      </div>
+
+      <div class="form-group row">
+        <label for="Exam" class="col-sm-2 col-form-label">Exam</label>
+        <div class="col-sm-6">
+            <select class="custom-select exam" name="exam" required>
+              <option value="">Select Exam</option>
+              <?php 
+                while($exam = mysqli_fetch_assoc($result1))
+                {?>
+                  <option value="<?php echo$exam['exam_id'] ?>"><?php echo$exam['exam_name']?></option>
+                <?php
+                }?>
+            </select>
+          </div>
+          <div class="invalid-tooltip">Please select the Exam.</div>
+      </div>
+      
+      <div class="form-group row">
+        <label for="total marks" class="col-sm-2 col-form-label">Total Marks</label>
+        <div class="col-sm-6">
+          <input type="text" class="form-control total_marks" disabled name="total_marks" id="total_marks" placeholder="Total marks will be displayed here."/>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="marks obtained" class="col-sm-2 col-form-label">Marks Obtained</label>
+        <div class="col-sm-6">
+          <input type="number" min=0  class="form-control obtained_marks" name="score" id="total_marks" placeholder="Please enter the marks scored out of total marks."   />
+        </div>
+        <div class="invalid-tooltip">Please enter the marks within the valid range.</div>
+      </div>
+      
+      
+      <div class="form-group row">
+      <label for="add_subject" class="col-sm-2 col-form-label" ></label>
+        <div class="col-sm-3">
+          <button type="submit" name="add" class="btn btn-primary" value="add" >Upload marks</button>
+        </div>
+      </div>
+
 <?php
 
-if ($_SERVER["REQUEST_METHOD"] == "GET" and isset($_GET['action']))
+if ($_SERVER["REQUEST_METHOD"] == "GET" and isset($_GET['add']) )
 {
   $cid = test_input($_GET["course"]);
   $sem = test_input($_GET["sem"]);
-  ?>
-<<<<<<< HEAD
-  <!-- <a href="generatepdf.php?course=<?php //echo$cid?>&sem=<?php //echo$sem?>&subject=<?php //echo$subject?>&exam=<?php //echo$exam?>" target="_blank">Click Here to download the report</a> -->
-=======
-  <!-- <a href="generatepdf.php?course=<?php echo$cid?>&sem=<?php echo$sem?>&subject=<?php echo$subject?>&exam=<?php echo$exam?>" target="_blank">Click Here to download the report</a> -->
->>>>>>> be24171 (README.md file committed!)
-  <?php
+  $subject = test_input($_GET["subject"]);
+  $student = test_input($_GET["student"]);
+  $exam = test_input($_GET["exam"]);  
+  $score = test_input($_GET["score"]);
 
-  if(strcmp($_REQUEST['action'],"view")==0)
+  $sql = "SELECT COUNT(r_id) from result where sub_id=$subject and s_id=$student and exam_id=$exam";
+  $result = mysqli_query($connection,$sql);
+  $count = mysqli_fetch_row($result);
+
+  if ($count[0]==0)
   {
-    $sql = "SELECT student.PRN,
-                   student.roll_no,
-                   user.user_id,
-                   user.u_name,
-                   user.photo_path,
-                   user.phone_no,
-                   user.email
-            FROM user,student
-            WHERE user.user_id = student.user_id
-                AND semester = $sem
-                AND course_id = $cid
-                ORDER BY roll_no ASC";
+    // $get_fid_query = "SELECT faculty_id from faculty where user_id=".$_SESSION['uid'];
+    // $result = mysqli_query($connection,$get_fid_query);
+    // $row = mysqli_fetch_assoc($result);
+    $date = date('Y-m-d H:i:s');
+
+    $sql = "INSERT INTO result(s_id, sub_id, exam_id, score, uploaded_on) VALUES($student, $subject, $exam, $score,'".$date."')";
+    if (mysqli_query($connection, $sql)) {?>
+
+      <div class="alert alert-success alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <strong>Success!</strong> Marks uploaded successfyully.
+        <?php header("refresh:0");?>
+      </div>
     
-    $res = mysqli_query($connection,$sql);
-    if($res) {?>
-      <table class='table table-hover table-bordered'>
-        <thead>
-            <tr>
-            <th>PRN</th>
-            <th>Roll No</th>
-            <th>Photo</th>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Mobile</th>
-            </tr>
-        </thead>
-
-        <tbody>
-      <?php 
-      if((mysqli_num_rows($res)>0))
-      {
-        while($student_data = mysqli_fetch_assoc($res))
-        {
-          echo"<tr>";
-          echo"<td>".$student_data['PRN']."</td>";
-          echo"<td>".$student_data['roll_no']."</td>";
-<<<<<<< HEAD
-          echo"<td><img src=".$student_data['photo_path']." width='100px' style='border-radius:5%;' alt='".$student_data['u_name'].".jpg'/></td>";
-=======
-          echo"<td><img src='/STMS/res/user".$student_data['user_id'].".".$student_data['photo_path']."' width='100px' style='border-radius:5%;' alt='".$student_data['u_name'].".jpg'/></td>";
->>>>>>> be24171 (README.md file committed!)
-          echo"<td>".$student_data['u_name']."</td>";
-          echo"<td>".$student_data['email']."</td>";
-          echo"<td>".$student_data['phone_no']."</td>";
-          echo"</tr>";
-        }
-      }
-      else
-      {
-        echo"<h4 style='text-align:center'>No Records found";
-      }
-      echo"</tbody> </table>";
-
-    }
-  }
+      <?php } else {?>
+        <div class="alert alert-danger alert-dismissible">
+          <button type="button" class="close" data-dismiss="alert">&times;</button>
+          <strong>Error!</strong> Marks could not be uploaded!<?php echo mysqli_error($connection);?>
+        </div>
+    <?php }
+  } else {?>
+    <div class="alert alert-warning alert-dismissible">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      <strong>Error!</strong> Record already exists! 
+    </div>
+<?php } 
 }
-
 function test_input($data) {
   $data = trim($data);
   $data = stripslashes($data);

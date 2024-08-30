@@ -14,9 +14,22 @@
  The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.  -->
 <?php
 session_start();
+<<<<<<< HEAD
 require_once('../../Database/connection.php');
 if(isset($_POST['update'])) {
     header("refresh:5");
+=======
+$connection =  mysqli_connect('localhost','anand','Happy@123','STMS',3306);
+if (!$connection) 
+{
+    die("Connection failed: " . mysqli_connect_error());
+}	
+//print_r($_SESSION);
+//$uname = $_SESSION['username'];
+//$uid = $_SESSION['uid'];
+if(isset($_POST['update'])) {
+    header("refresh:3");
+>>>>>>> be24171 (README.md file committed!)
 }
 if(!isset($_SESSION['uid']))
 {
@@ -37,9 +50,14 @@ $email = $row['email'];
 $phone_no = $row['phone_no'];
 $PRN = $row['PRN'];
 $rno = $row['roll_no'];
+<<<<<<< HEAD
 $sql = "SELECT college_name,dept_name FROM college,department WHERE college.college_id = department.college_id AND department.college_id=".(int)$row['college_id']." AND dept_id =".(int) $row['dept_id'];
 
 $result = mysqli_query($connection,$sql);
+=======
+
+$result = mysqli_query($connection,"SELECT college_name,dept_name FROM college,department WHERE college.college_id = department.college_id AND department. college_id=".(int)$row['college_id']);
+>>>>>>> be24171 (README.md file committed!)
 echo(( mysqli_error($connection)));
 $college = mysqli_fetch_assoc($result);
 
@@ -137,11 +155,42 @@ $course = mysqli_fetch_array($result);
                         </a>
                     </li>
                     <li>
+<<<<<<< HEAD
                         <a class="nav-link" href="result.php">
+=======
+                        <a class="nav-link" href="./result.php">
+>>>>>>> be24171 (README.md file committed!)
                             <i class="nc-icon nc-paper-2"></i>
                             <p>Result</p>
                         </a>
                     </li>
+<<<<<<< HEAD
+=======
+                   <!-- <li>
+                        <a class="nav-link" href="./icons.html">
+                            <i class="nc-icon nc-atom"></i>
+                            <p>Assignments</p>
+                        </a>
+                    </li>-->
+                    <!--<li>
+                        <a class="nav-link" href="./maps.html">
+                            <i class="nc-icon nc-pin-3"></i>
+                            <p>Maps</p>
+                        </a>
+                    </li>-->
+                    <li>
+                        <a class="nav-link" href="./notifications.html">
+                            <i class="nc-icon nc-bell-55"></i>
+                            <p>Notifications</p>
+                        </a>
+                    </li>
+                    <!--<li class="nav-item active active-pro">
+                        <a class="nav-link active" href="upgrade.html">
+                            <i class="nc-icon nc-alien-33"></i>
+                            <p>Upgrade to PRO</p>
+                        </a>
+                    </li>-->
+>>>>>>> be24171 (README.md file committed!)
                 </ul>
             </div>
         </div>
@@ -163,6 +212,23 @@ $course = mysqli_fetch_array($result);
                                     <span class="d-lg-none">Dashboard</span>
                                 </a>
                             </li>
+<<<<<<< HEAD
+=======
+                            <li class="dropdown nav-item">
+                                <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
+                                    <i class="nc-icon nc-planet"></i>
+                                    <span class="notification">5</span>
+                                    <span class="d-lg-none">Notification</span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <a class="dropdown-item" href="#">Notification 1</a>
+                                    <a class="dropdown-item" href="#">Notification 2</a>
+                                    <a class="dropdown-item" href="#">Notification 3</a>
+                                    <a class="dropdown-item" href="#">Notification 4</a>
+                                    <a class="dropdown-item" href="#">Another notification</a>
+                                </ul>
+                            </li>
+>>>>>>> be24171 (README.md file committed!)
                             <li class="nav-item">
                                 <a href="#" class="nav-link">
                                     <i class="nc-icon nc-zoom-split"></i>
@@ -176,6 +242,22 @@ $course = mysqli_fetch_array($result);
                                     <span class="no-icon">Account</span>
                                 </a>
                             </li>
+<<<<<<< HEAD
+=======
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <span class="no-icon">Dropdown</span>
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                    <a class="dropdown-item" href="#">Action</a>
+                                    <a class="dropdown-item" href="#">Another action</a>
+                                    <a class="dropdown-item" href="#">Something</a>
+                                    <a class="dropdown-item" href="#">Something else here</a>
+                                    <div class="divider"></div>
+                                    <a class="dropdown-item" href="#">Separated link</a>
+                                </div>
+                            </li>
+>>>>>>> be24171 (README.md file committed!)
                             <li class="nav-item">
                                 <a class="nav-link" href="./logout.php">
                                     <span class="no-icon">Log out</span>
@@ -309,9 +391,34 @@ $course = mysqli_fetch_array($result);
                                                     <input type="file" class="form-control-file" name='filepath' id="file" onchange="Filevalidation()" name ="filepath">
                                                 </div>
                                             </div>
+<<<<<<< HEAD
                                             
                                         </div>
                                     <button type="submit" name="update" class="btn btn-info btn-fill pull-right">Update Profile</button>
+=======
+                                            <!-- <div class="col-md-4 px-1">
+                                                <div class="form-group">
+                                                    <label>Country</label>
+                                                    <input type="text" class="form-control" placeholder="Country" value="Student1">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 pl-1">
+                                                <div class="form-group">
+                                                   <label>Postal Code</label>
+                                                    <input type="number" class="form-control" placeholder="ZIP Code">
+                                                </div>
+                                            </div> -->
+                                        </div>
+                                        <!-- <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label>About Me</label>
+                                                    <textarea rows="4" cols="80" class="form-control" placeholder="Here can be your description" value="Mike"><?php print_r($row);?></textarea>
+                                                </div>
+                                            </div>  
+                                        </div> -->
+                                        <button type="submit" name="update" class="btn btn-info btn-fill pull-right">Update Profile</button>
+>>>>>>> be24171 (README.md file committed!)
 <?php
 // define variables and set to empty values
 
@@ -324,11 +431,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $dob = test_input($_POST["dob"]);
   $gender = test_input($_POST["gender"]);
   $address = test_input($_POST["address"]);
+<<<<<<< HEAD
   $sql = "UPDATE user SET u_name='".$full_name."', gender='".$gender."', dob='".$dob."', address='".$address."', email='".$email."', phone_no=".$mobile_no." WHERE user_id=".$_SESSION['uid'];
   if (mysqli_query($connection, $sql)) {?>
     <div class="alert alert-success alert-dismissible">
       <button type="button" class="close" data-dismiss="alert">&times;</button>
       <strong>Success!</strong> Record updated successfully.<br> The page will refresh in 5 Seconds!
+=======
+  $sql = "UPDATE user SET u_name='".$full_name."', gender='".$gender."', dob='".$dob."', address='".$address."', email='".$email."', phone_no=".$phone_no." WHERE user_id=".$_SESSION['uid'];
+  if (mysqli_query($connection, $sql)) {?>
+    <div class="alert alert-success alert-dismissible">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      <strong>Success!</strong> Record updated successfully.
+>>>>>>> be24171 (README.md file committed!)
       <?php
       $_SESSION['name'] = $full_name;
        header("refresh:0");?>
@@ -347,8 +462,13 @@ function test_input($data) {
   $data = htmlspecialchars($data);
   return $data;
 }
+<<<<<<< HEAD
 $target_dir = "/var/www/domain1.com/public_html/STMS-complete/STMS/res/";
 $relative_path = "/STMS-complete/STMS/res/user";
+=======
+$target_dir = "/var/www/happy.com/html/STMS/res/";
+$relative_path = "/STMS/res/";
+>>>>>>> be24171 (README.md file committed!)
 $target_file = $target_dir . basename($_FILES["filepath"]["name"]);
 $uploadOk = 1;
 $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
@@ -391,10 +511,17 @@ if(isset($_POST["update"]) && $_FILES['filepath']["error"]==0) {
     echo ";
   // if everything is ok, try to upload file
   <?php } else {
+<<<<<<< HEAD
     unlink("/var/www/domain1.com/public_html".$_SESSION['photo']);
     if (move_uploaded_file($_FILES["filepath"]["tmp_name"], $target_dir."user".$_SESSION['uid'].'.'.$imageFileType)) {
         
         $relative_path = $relative_path.$_SESSION['uid'].'.'.$imageFileType;
+=======
+    unlink(realpath($photo));
+    if (move_uploaded_file($_FILES["filepath"]["tmp_name"], $target_dir."user".$_SESSION['uid'].'.'.$imageFileType)) {
+        
+        $relative_path = $relative_path."user".$_SESSION['uid'].'.'.$imageFileType;
+>>>>>>> be24171 (README.md file committed!)
       ?>
       <div class="alert alert-success alert-dismissible">
         <button type="button" class="close" data-dismiss="alert">&times;</button>
@@ -413,7 +540,11 @@ if(isset($_POST["update"]) && $_FILES['filepath']["error"]==0) {
   unset($_FILES);
   unset($_POST['update']);
 }
+<<<<<<< HEAD
 mysqli_close($connection);
+=======
+//mysqli_close($connection);
+>>>>>>> be24171 (README.md file committed!)
 ?>
                                     </form>
                                 </div>
@@ -455,13 +586,198 @@ mysqli_close($connection);
                             <script>
                                 document.write(new Date().getFullYear())
                             </script>
+<<<<<<< HEAD
                             <a href="http://www.fergusson.edu">Fergussonian</a>, made with love for a better web
+=======
+                            <a href="#http://www.creative-tim.com">Fergussonian</a>, made with love for a better web
+>>>>>>> be24171 (README.md file committed!)
                         </p>
                     </nav>
                 </div>
             </footer>
         </div>
     </div>
+<<<<<<< HEAD
+=======
+    <!--   -->
+    <!-- <div class="fixed-plugin">
+    <div class="dropdown show-dropdown">
+        <a href="#" data-toggle="dropdown">
+            <i class="fa fa-cog fa-2x"> </i>
+        </a>
+
+        <ul class="dropdown-menu">
+			<li class="header-title"> Sidebar Style</li>
+            <li class="adjustments-line">
+                <a href="javascript:void(0)" class="switch-trigger">
+                    <p>Background Image</p>
+                    <label class="switch">
+                        <input type="checkbox" data-toggle="switch" checked="" data-on-color="primary" data-off-color="primary"><span class="toggle"></span>
+                    </label>
+                    <div class="clearfix"></div>
+                </a>
+            </li>
+            <li class="adjustments-line">
+                <a href="javascript:void(0)" class="switch-trigger background-color">
+                    <p>Filters</p>
+                    <div class="pull-right">
+                        <span class="badge filter badge-black" data-color="black"></span>
+                        <span class="badge filter badge-azure" data-color="azure"></span>
+                        <span class="badge filter badge-green" data-color="green"></span>
+                        <span class="badge filter badge-orange" data-color="orange"></span>
+                        <span class="badge filter badge-red" data-color="red"></span>
+                        <span class="badge filter badge-purple active" data-color="purple"></span>
+                    </div>
+                    <div class="clearfix"></div>
+                </a>
+            </li>
+            <li class="header-title">Sidebar Images</li>
+
+            <li class="active">
+                <a class="img-holder switch-trigger" href="javascript:void(0)">
+                    <img src="../assets/img/sidebar-1.jpg" alt="" />
+                </a>
+            </li>
+            <li>
+                <a class="img-holder switch-trigger" href="javascript:void(0)">
+                    <img src="../assets/img/sidebar-3.jpg" alt="" />
+                </a>
+            </li>
+            <li>
+                <a class="img-holder switch-trigger" href="javascript:void(0)">
+                    <img src="..//assets/img/sidebar-4.jpg" alt="" />
+                </a>
+            </li>
+            <li>
+                <a class="img-holder switch-trigger" href="javascript:void(0)">
+                    <img src="../assets/img/sidebar-5.jpg" alt="" />
+                </a>
+            </li>
+
+            <li class="button-container">
+                <div class="">
+                    <a href="http://www.creative-tim.com/product/light-bootstrap-dashboard" target="_blank" class="btn btn-info btn-block btn-fill">Download, it's free!</a>
+                </div>
+            </li>
+
+            <li class="header-title pro-title text-center">Want more components?</li>
+
+            <li class="button-container">
+                <div class="">
+                    <a href="http://www.creative-tim.com/product/light-bootstrap-dashboard-pro" target="_blank" class="btn btn-warning btn-block btn-fill">Get The PRO Version!</a>
+                </div>
+            </li>
+
+            <li class="header-title" id="sharrreTitle">Thank you for sharing!</li>
+
+            <li class="button-container">
+				<button id="twitter" class="btn btn-social btn-outline btn-twitter btn-round sharrre"><i class="fa fa-twitter"></i> · 256</button>
+                <button id="facebook" class="btn btn-social btn-outline btn-facebook btn-round sharrre"><i class="fa fa-facebook-square"></i> · 426</button>
+            </li>
+        </ul>
+    </div>
+</div>
+-->
+
+<?php
+// define variables and set to empty values
+/* $name = $email = $gender = $dob = $mobile_no = $address = $username = "";
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+  $fname = test_input($_POST["fname"]);
+  $lname = test_input($_POST["lname"]);
+  $name = $fname." ".$lname;
+  $email = test_input($_POST["email"]);
+  $mobile_no = test_input($_POST["mobile"]);
+  $dob = test_input($_POST["dob"]);
+  $gender = test_input($_POST["gender"]);
+  $address = test_input($_POST["address"]);
+  $sql = "UPDATE user SET u_name='".$name."', gender='".$gender."', dob='".$dob."', address='".$address."', email='".$email."', phone_no=".$phone_no." WHERE user_id=".$_SESSION['uid'];
+  if (mysqli_query($connection, $sql)) {?>
+    <div class="alert alert-success alert-dismissible">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      <strong>Success!</strong> Record updated successfully.
+      <?php
+      $_SESSION['name'] = $name;
+       header("refresh:0");?>
+    </div>
+  <?php } else {?>
+      <div class="alert alert-danger alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <strong>Error!</strong> Data could not be updated!<?php echo mysqli_error($connection);?>
+      </div>
+  <?php }
+}
+
+function test_input($data) {
+  $data = trim($data);
+  $data = stripslashes($data);
+  $data = htmlspecialchars($data);
+  return $data;
+}
+$target_dir = "/var/www/happy.com/html/STMS/res/";
+$relative_path = "/STMS/res/";
+$target_file = $target_dir . basename($_FILES["filepath"]["name"]);
+$uploadOk = 1;
+$imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+
+// Check if image file is a actual image or fake image
+if(isset($_POST["update"]) && $_FILES['filepath']["error"]==0) {
+  $check = getimagesize($_FILES["filepath"]["tmp_name"]);
+  if($check !== false) {
+    //echo "File is an image - " . $check["mime"] . ".";
+    $uploadOk = 1;
+  } else {
+      echo "File is not an image".$check['mime'];
+      $uploadOk = 0;
+    }
+    // Check if file already exists
+  if (file_exists($target_file)) {
+    echo "<br>Sorry, file already exists.";
+    $uploadOk = 0;
+  }
+  // Check file size
+  else if ($_FILES["filepath"]["size"] > 5000000) {
+    echo "<br>Sorry, your file is too large.";
+    $uploadOk = 0;
+  }
+
+  // Allow certain file formats
+  else if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+  && $imageFileType != "gif" ) {
+    echo "<br>Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+    $uploadOk = 0;
+  }
+  
+  // Check if $uploadOk is set to 0 by an error
+  if ($uploadOk == 0) {
+    echo "<br>Sorry, your file was not uploaded.";
+  // if everything is ok, try to upload file
+  } else {
+
+    if (move_uploaded_file($_FILES["filepath"]["tmp_name"], $target_dir."user".$_SESSION['uid'].'.'.$imageFileType)) {
+        
+        $relative_path = $relative_path."user".$_SESSION['uid'].'.'.$imageFileType;
+      ?>
+      <div class="alert alert-success alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <strong>Success!</strong> <?php echo "The file ". htmlspecialchars( basename( $_FILES["filepath"]["name"])). " has been uploaded.";
+        echo$relative_path;
+        mysqli_query($connection,"UPDATE user SET photo_path='".$relative_path."' WHERE user.user_id=".$_SESSION['uid']);
+        $_SESSION['photo'] = $relative_path; ?>
+      </div>
+      <?php
+    } else {
+      echo "Sorry, there was an error uploading your file.";
+    }
+  }
+  unset($_FILES);
+  unset($_POST['update']);
+}
+mysqli_close($connection); */
+?>
+
+>>>>>>> be24171 (README.md file committed!)
 </body>
 <!--   Core JS Files   -->
 <script src="../assets/js/core/jquery.3.2.1.min.js" type="text/javascript"></script>

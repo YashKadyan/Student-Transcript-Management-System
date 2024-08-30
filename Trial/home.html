@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Welcome to STMS</title>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>My Account</title>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+		<link rel="stylesheet" href="style.css"/>
+		<script>
+			function openLoginForm(name)
+			{
+				document.getElementById("entity").innerHTML = name.concat(" Login");
+				document.getElementById("Login").value = name;
+				document.body.classList.add("showLoginForm");	
+			}
+			function closeLoginForm(){
+			  document.body.classList.remove("showLoginForm");
+			}
+		</script>
+		<style>
+			button.decorate :hover {
+  				background-image: linear-gradient(315deg, #21d190 0%, #d65bca 74%); 
+			}
+		</style>
+	</head>
+
+	<body>	
+		<div class="flex-container">
+			<div class="topnav">
+				<label class="logo">Online Student Result Portal</label>
+				<div class="topnav-right">
+					<a class="active" href="#home">Home</a>
+					<a href="#facultylogin" onclick="openLoginForm('Faculty')">Faculty Login</a>
+					<a href="#studentlogin" onclick="openLoginForm('Student')" >Student Login</a>
+					<a href="#aboutus">About Us</a>
+					<a href="#contactus">Contact Us</a>	
+				</div>
+			</div>
+		</div>
+		<img class="img-fluid" src="res/result.jpg"/>
+		<br><br><br><br><br><br><b><h1><span style="padding-left: 150px;">Students Management<span style="padding-left: 280px;">Result Management<span style="padding-left: 290px;">Subject Management</h1></b><br><br>
+					<span style="color: #808080; font-size: 25px; padding-left: 60px;">There are many variations of passages of Lorem<span style="color: #808080; font-size: 25px; padding-left: 70px;">There are many variations of passages of Lorem<span style="color: #808080; font-size: 25px; padding-left: 60px;">There are many variations of passages of Lorem<p>
+					<span style="color: #808080; font-size: 25px; padding-left: 70px;">Ipsum available, but the majority have suffered<span style="color: #808080; font-size: 25px; padding-left: 90px;">Ipsum available, but the majority have suffered<span style="color: #808080; font-size: 25px; padding-left: 80px;">Ipsum available, but the majority have suffered<p>
+					<span style="color: #808080; font-size: 25px; padding-left: 70px;">alteration in some form, by injecting humour, or<span style="color: #808080; font-size: 25px; padding-left: 85px;">alteration in some form, by injecting humour, or<span style="color: #808080; font-size: 25px; padding-left: 75px;">alteration in some form, by injecting humour, or<p>
+					<span style="color: #808080; font-size: 25px; padding-left: 43px;">randomised words which don't look even believable.<span style="color: #808080; font-size: 25px; padding-left: 27px;">randomised words which don't look even believable.<span style="color: #808080; font-size: 25px; padding-left: 20px;">randomised words which don't look even believable.<br><br><br>
+		<img src="res/results.jpg" width="425px" height="400px" style="margin-left: 100px;"/>
+		<img src="res/interaction.jpeg" width="425px" height="400px" style="margin-left: 170px;"/>
+		<img src="res/searchresults.jpg" width="425px" height="400px" style="margin-left: 170px;"/><br><br>
+		<center><b><span style="color: black; font-size: 32px;">About Student Result Management System</b></center><br>
+			<center><span style="color: #808080; font-size: 22px;">The Result Management System (RMS) enables organization to analyze, edit and publish assessment result in a formed and secure way. Manage assessment result in a<p>professional and secure way to convert them into the meaningful data of the organization (e.g. grades, certificates and othermeasure of achievements). In the existing system,<p>most of the records are maintained on paper. It becomes very inconvenient to modify the data. In the existing system, there is a possibility that the same data in different<p>registers may have different values which means that the entries of the same data do not match. This inconsistent state does not supply the concrete information which poses a<p>problem in the case of information related to a particular seach record. Our project is very useful. User is no longer required to check his register in search of records, as now it<p>can be searched over the software by choosing some options. The user need not type in most of the information. He/She is just required to enter in the desired options. On the<p>whole it liberates the user from keeping lengthy manual records. In a nutshell, it abates the work load of an organization. In today's world, no one likes to perform calculations<p>on calculator or manually when computer is there. Everyone wants his/her work to be done by computer automatically and displaying the results for further manipulations.</center>
+	
+			<form action="login_validate.php" method="POST" style="font-family:'Raleway';">
+					  <div class="popup-overlay"></div>
+					  <div class="popup">
+						<div class="popup-close" onclick="closeLoginForm()">&times;</div>
+						<div class="form">
+						  <div class="avatar">
+							<img src="res/login_avatar.png" alt="">
+						  </div>
+						  <div class="header" id="entity">
+							Admin login
+						  </div>
+						  <div class="element">
+							<label for="username">Username</label>
+							<input type="text" id="username" name="username" required>
+						  </div>
+						  <div class="element">
+							<label for="password">Password</label>
+							<input type="password" id="password" name="password" required>
+							<input type="text" id="Login" name = "entity" value="" hidden/>
+						  </div>
+						  <div class="element">
+							<button class="decorate" type="submit" style="background-image: linear-gradient(315deg, #21d190 0%, #d65bca 74%);">Login</button>
+						  </div>
+						</div>
+					  </div>
+			</form>
+	</body>
+</html>
